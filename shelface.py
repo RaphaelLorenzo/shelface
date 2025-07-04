@@ -29,10 +29,15 @@ def get_available_animations(animations_dir):
     return [d for d in os.listdir(animations_dir) if os.path.isdir(os.path.join(animations_dir, d))]
 
 
-def display_face(face_list, frame_rate=30):
+def display_face(face_list, frame_rate=30, args=None):
     counter = 0
-    cv2.namedWindow("Face", cv2.WINDOW_NORMAL)
-    cv2.setWindowProperty("Face", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    if args.screen_size == "full":
+        cv2.namedWindow("Face", cv2.WINDOW_NORMAL)
+        cv2.setWindowProperty("Face", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    else:
+        cv2.namedWindow("Face", cv2.WINDOW_NORMAL)
+        cv2.setWindowProperty("Face", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_NORMAL)
+        
     while True:
         cv2.imshow("Face", face_list[counter])
         key = cv2.waitKey(int(1000 / frame_rate))
@@ -42,7 +47,7 @@ def display_face(face_list, frame_rate=30):
             break
 
 def get_face_resized(face, mode):
-    if args.full_screen == "pad":
+    if args.resize_method == "pad":
         # pad in black and put the image in the center
         background = np.zeros((SCREEN_HEIGHT, SCREEN_WIDTH, 3), dtype=np.uint8)
         face_height, face_width = face.shape[:2]
@@ -51,7 +56,7 @@ def get_face_resized(face, mode):
         background[y_offset:y_offset+face_height, x_offset:x_offset+face_width] = face
         face = background
     
-    elif args.full_screen == "resize_pad":
+    elif args.resize_method == "resize_pad":
         # resize either to screen width or height, keeping aspect ratio
         face_height, face_width = face.shape[:2]
         
@@ -77,7 +82,7 @@ def get_face_resized(face, mode):
         background[y_offset:y_offset+resize_face_height, x_offset:x_offset+resize_face_width] = face
         face = background
         
-    elif args.full_screen == "resize":
+    elif args.resize_method == "resize":
         face = cv2.resize(face, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
     return face
@@ -93,9 +98,9 @@ def main(args):
         face_path = os.path.join(face_dir, random_face)
         face = cv2.imread(face_path)
 
-        face = get_face_resized(face, args.full_screen)
+        face = get_face_resized(face, args.resize_method)
         
-        display_face([face])
+        display_face([face], args=args)
     
     elif args.face_type == "animated":
         face_dir = os.path.join(here, ANIMATIONS_DIR, args.face_name)
@@ -103,7 +108,7 @@ def main(args):
         face_images.sort()
         
         face_images = [cv2.imread(os.path.join(face_dir, f)) for f in face_images]
-        face_images = [get_face_resized(f, args.full_screen) for f in face_images]
+        face_images = [get_face_resized(f, args.resize_method) for f in face_images]
         
         info_file = os.path.join(face_dir, "info.txt")
         if os.path.exists(info_file):
@@ -121,7 +126,7 @@ def main(args):
             print("No info file found")
             frame_rate = 30
                 
-        display_face(face_images, frame_rate)
+        display_face(face_images, frame_rate, args)
     
     return
 
@@ -130,19 +135,19 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--face_type", "-ft", type=str, default="still")
     parser.add_argument("--face_name", "-n", type=str, default="green_square")
-    parser.add_argument("--full_screen", "-fs", type=str, default="resize_pad")
+    parser.add_argument("--resize_method", "-r", type=str, default="resize_pad")
     parser.add_argument("--screen_size", "-ss", type=str, default="2160,1080")
     args = parser.parse_args()
     
     available_animations = get_available_animations(ANIMATIONS_DIR)
     assert(args.face_name in available_animations), f"Invalid face name: {args.face_name} (available: {available_animations})"
     assert(args.face_type in AVAILABLE_FACE_TYPES), f"Invalid face type: {args.face_type} (available: {AVAILABLE_FACE_TYPES})"
-    assert(args.full_screen in ["pad", "resize", "resize_pad"]), f"Invalid full screen mode: {args.full_screen} (available: ['pad', 'resize', 'resize_pad'])"
+    assert(args.resize_method in ["pad", "resize", "resize_pad"]), f"Invalid full screen mode: {args.resize_method} (available: ['pad', 'resize', 'resize_pad'])"
     
     if args.screen_size != "full":
         SCREEN_WIDTH, SCREEN_HEIGHT = map(int, args.screen_size.split(","))
     else:
-        print("Using full screen")
         SCREEN_WIDTH, SCREEN_HEIGHT = root.winfo_screenwidth(), root.winfo_screenheight()
-
+        print("Using full screen : {}x{}".format(SCREEN_WIDTH, SCREEN_HEIGHT))
+        
     main(args)

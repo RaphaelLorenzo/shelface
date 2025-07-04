@@ -1,0 +1,25 @@
+ExifTool Version Number         : 12.40
+File Name                       : eve_like.gif
+Directory                       : ./eve_like
+File Size                       : 1704 KiB
+File Modification Date/Time     : 2025:07:04 12:14:45+02:00
+File Access Date/Time           : 2025:07:04 12:26:35+02:00
+File Inode Change Date/Time     : 2025:07:04 12:23:40+02:00
+File Permissions                : -rw-rw-r--
+File Type                       : GIF
+File Type Extension             : gif
+MIME Type                       : image/gif
+GIF Version                     : 89a
+Image Width                     : 480
+Image Height                    : 270
+Has Color Map                   : Yes
+Color Resolution Depth          : 8
+Bits Per Pixel                  : 8
+Background Color                : 31
+Pixel Aspect Ratio              : 1
+Animation Iterations            : Infinite
+Transparent Color               : 1
+Frame Count                     : 151
+Duration                        : 10.07 s
+Image Size                      : 480x270
+Megapixels                      : 0.130

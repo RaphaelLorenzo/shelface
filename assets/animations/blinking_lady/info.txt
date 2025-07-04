@@ -1,0 +1,30 @@
+ExifTool Version Number         : 12.40
+File Name                       : blinking_lady.gif
+Directory                       : ./blinking_lady
+File Size                       : 408 KiB
+File Modification Date/Time     : 2025:07:04 12:08:16+02:00
+File Access Date/Time           : 2025:07:04 12:26:11+02:00
+File Inode Change Date/Time     : 2025:07:04 12:23:37+02:00
+File Permissions                : -rw-rw-r--
+File Type                       : GIF
+File Type Extension             : gif
+MIME Type                       : image/gif
+GIF Version                     : 89a
+Image Width                     : 670
+Image Height                    : 378
+Has Color Map                   : Yes
+Color Resolution Depth          : 8
+Bits Per Pixel                  : 8
+Background Color                : 255
+Animation Iterations            : Infinite
+XMP Toolkit                     : Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01
+Creator Tool                    : Adobe Photoshop CC 2017 (Macintosh)
+Instance ID                     : xmp.iid:0727FBEFF96A11E7946CD993404E4479
+Document ID                     : xmp.did:0727FBF0F96A11E7946CD993404E4479
+Derived From Instance ID        : xmp.iid:0727FBEDF96A11E7946CD993404E4479
+Derived From Document ID        : xmp.did:0727FBEEF96A11E7946CD993404E4479
+Transparent Color               : 255
+Frame Count                     : 8
+Duration                        : 0.80 s
+Image Size                      : 670x378
+Megapixels                      : 0.253

@@ -1,0 +1,25 @@
+ExifTool Version Number         : 12.40
+File Name                       : 00-50-12-737_512.gif
+Directory                       : ./half_green
+File Size                       : 36 KiB
+File Modification Date/Time     : 2025:07:04 12:33:06+02:00
+File Access Date/Time           : 2025:07:04 12:35:54+02:00
+File Inode Change Date/Time     : 2025:07:04 12:35:37+02:00
+File Permissions                : -rw-rw-r--
+File Type                       : GIF
+File Type Extension             : gif
+MIME Type                       : image/gif
+GIF Version                     : 89a
+Image Width                     : 512
+Image Height                    : 248
+Has Color Map                   : Yes
+Color Resolution Depth          : 8
+Bits Per Pixel                  : 8
+Background Color                : 208
+Animation Iterations            : Infinite
+Comment                         : Created with GIMP by Anika Lemay
+Transparent Color               : 78
+Frame Count                     : 10
+Duration                        : 3.06 s
+Image Size                      : 512x248
+Megapixels                      : 0.127

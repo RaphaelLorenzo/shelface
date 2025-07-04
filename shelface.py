@@ -31,6 +31,8 @@ def get_available_animations(animations_dir):
 
 def display_face(face_list, frame_rate=30):
     counter = 0
+    cv2.namedWindow("Face", cv2.WINDOW_NORMAL)
+    cv2.setWindowProperty("Face", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     while True:
         cv2.imshow("Face", face_list[counter])
         key = cv2.waitKey(int(1000 / frame_rate))

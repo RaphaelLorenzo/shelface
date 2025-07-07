@@ -133,13 +133,15 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--face_type", "-ft", type=str, default="still")
-    parser.add_argument("--face_name", "-n", type=str, default="green_square")
+    parser.add_argument("--face_type", "-ft", type=str, default="animated")
+    parser.add_argument("--face_name", "-n", type=str, default="random")
     parser.add_argument("--resize_method", "-r", type=str, default="resize_pad")
-    parser.add_argument("--screen_size", "-ss", type=str, default="2160,1080")
+    parser.add_argument("--screen_size", "-ss", type=str, default="full")
     args = parser.parse_args()
     
     available_animations = get_available_animations(ANIMATIONS_DIR)
+    if args.face_name == "random":
+        args.face_name = random.choice(available_animations)
     assert(args.face_name in available_animations), f"Invalid face name: {args.face_name} (available: {available_animations})"
     assert(args.face_type in AVAILABLE_FACE_TYPES), f"Invalid face type: {args.face_type} (available: {AVAILABLE_FACE_TYPES})"
     assert(args.resize_method in ["pad", "resize", "resize_pad"]), f"Invalid full screen mode: {args.resize_method} (available: ['pad', 'resize', 'resize_pad'])"

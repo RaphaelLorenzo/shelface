@@ -1,22 +1,13 @@
 # import torch
 import argparse
 import os
-import sys
-from tqdm import tqdm
-import warnings
-warnings.filterwarnings("ignore")
-import sys
-from PIL import Image
-import datetime
 import cv2
 import random
-
-import tkinter #python 3 syntax
 import numpy as np
+import tkinter # just to get the height and width of the screen
 
 root = tkinter.Tk()
 root.withdraw()
-
 SCREEN_WIDTH, SCREEN_HEIGHT = root.winfo_screenwidth(), root.winfo_screenheight()
 
 AVAILABLE_FACE_TYPES = ["still", "animated"]
@@ -142,6 +133,9 @@ if __name__ == "__main__":
     available_animations = get_available_animations(ANIMATIONS_DIR)
     if args.face_name == "random":
         args.face_name = random.choice(available_animations)
+    
+    print(f"Using face: {args.face_name}")
+    
     assert(args.face_name in available_animations), f"Invalid face name: {args.face_name} (available: {available_animations})"
     assert(args.face_type in AVAILABLE_FACE_TYPES), f"Invalid face type: {args.face_type} (available: {AVAILABLE_FACE_TYPES})"
     assert(args.resize_method in ["pad", "resize", "resize_pad"]), f"Invalid full screen mode: {args.resize_method} (available: ['pad', 'resize', 'resize_pad'])"
